@@ -9,7 +9,7 @@ class AppointmentsController < ApplicationController
         appointment = Appointment.find(appointment_id).first
         appointments << appointment
       end
-    return render json: appointments
+    return render json: appointments.sort_by {|appointment| appointment.start_time}
     else
     return render json: {status: "error", code: 2002, message: "schedule does not exist: please associate appointment with existing schedule"}
     end
